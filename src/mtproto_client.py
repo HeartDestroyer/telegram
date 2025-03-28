@@ -40,13 +40,12 @@ async def start_telethon():
     dialogs = await telethon_client.get_dialogs()
     logger.info(f"Получено {len(dialogs)} диалогов")
 
-# + Получаем всех участников канала; параметр limit можно задать, например, 0 для получения всех.
+# + Получаем всех участников канала
 async def get_all_participants(channel):
-    # Получаем всех участников канала; параметр limit можно задать, например, 0 для получения всех.
     participants = await telethon_client.get_participants(channel, filter=ChannelParticipantsSearch(''), limit=0)
     return participants
 
-# + Использует MTProto API (channels.editBanned) для удаления пользователя из чата
+# + Использует MTProto API для удаления пользователя из чата
 async def mtproto_remove_user(chat_id: int, user_id: int):
     """
     Использует MTProto API (channels.editBanned) для удаления пользователя из чата
